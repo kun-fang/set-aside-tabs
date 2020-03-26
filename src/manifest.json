@@ -1,0 +1,31 @@
+{
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "set-aside-tabs@kuangkuang",
+      "strict_min_version": "57.0a1"
+    }
+  },
+  "manifest_version": 2,
+  "name": "Set Aside Tabs",
+  "version": "1.0",
+  "description": "Demonstrates using the sessions API to store and restore extension-specific tab state.",
+  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/session-state",
+  "icons": {
+    "48": "icons/set-aside-icon-48.png",
+    "96": "icons/set-aside-icon-96.png"
+  },
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "browser_action": {
+    "default_icon": "icons/set-aside-icon-48.png",
+    "default_title": "Set Aside Tabs"
+  },
+
+  "permissions": ["<all_urls>", "menus", "sessions", "tabs", "storage", "management"],
+
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'; img-src 'self' data:"
+
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Side Aside Tabs</title>
+    <link rel="shortcut icon" href="icons/windows-icon-48.png" type="image/x-icon">
+    <style>
+      .inline-icon {
+        vertical-align: middle;
+        height: 25px;
+        margin-right: 5px;
+      }
+      .btn {
+        border-radius: 0.3rem !important;
+      }
+      .btn.btn-lg {
+        height: 2.5rem !important;
+      }
+    </style>
+  </head>
+  <body style="padding:20px">
+    <div id="sidebar">
+      <header class="navbar">
+        <section class="navbar-section">
+          <button class="btn btn-lg btn-default" @click="setAsideTabGroup">
+            <img src="icons/set-aside-icon-48.png" class="inline-icon">
+            Set Aside Tabs
+          </button>
+        </section>
+        <section class="navbar-center">
+          <div class="navbar-brand text-bold">Tabs You Have Set Aside</div>
+        </section>
+        <section class="navbar-section">
+          <button v-if="setAsideTabs.length > 0" class="btn btn-link" @click="clearTabs">Clear All</button>
+        </section>
+      </header>
+      <br>
+      <p class="text-center" v-if="setAsideTabs.length === 0">Click <em>Set Aside Tabs</em> to collect all the tabs here</p>
+      <set-aside-tabs :tab-groups="setAsideTabs" @refresh-tabs="initTabs"></set-aside-tabs>
+    </div>
+  </body>
+</html>
