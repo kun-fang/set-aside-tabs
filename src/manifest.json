@@ -8,8 +8,8 @@
   "manifest_version": 2,
   "name": "Set Aside Tabs",
   "version": "1.0",
-  "description": "Demonstrates using the sessions API to store and restore extension-specific tab state.",
-  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/session-state",
+  "description": "A firefox addon to set aside tabs",
+  "homepage_url": "",
   "icons": {
     "48": "icons/set-aside-icon-48.png",
     "96": "icons/set-aside-icon-96.png"
@@ -24,7 +24,7 @@
     "default_title": "Set Aside Tabs"
   },
 
-  "permissions": ["<all_urls>", "menus", "sessions", "tabs", "storage", "management"],
+  "permissions": ["<all_urls>", "sessions", "tabs", "storage", "management"],
 
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'; img-src 'self' data:"
 
