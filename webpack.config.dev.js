@@ -8,7 +8,7 @@ module.exports = merge(baseConfig, {
   mode: 'development',
   devtool: "inline-source-map",
   output: {
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, "build"),
     filename: "[name].js"
   }
 });
