@@ -9,20 +9,21 @@ A copy of Edge feature: set aside tabs. This is a very useful feature to organiz
 Differences from Edge version
 ----
 
-1. Because the firefox sidebar is too narrow for the feature, I put the set aside tabs in a separate tab.
+- Because the firefox sidebar is too narrow for the feature, I put the set aside tabs in a separate tab.
 
-2. It only set aside normal tabs that is not pinned, so if the firefox preferrence page is open, it is not set aside.
+- It only set aside normal tabs that is not pinned, so if the firefox preferrence page is open, it is not set aside.
 
-3. Bookmark function is not included. I don't think it is very useful. If you think so, let me know.
+- Bookmark function is not included. I don't think it is very useful. If you think so, let me know.
 
 How to build the extension
 ----
-- clone the repo to your local machine
-- go to root directory of the repo and run
+
+1. clone the repo to your local machine
+2. go to root directory of the repo and run
 ```
 npm install
 ```
-- build extension:
+3. build extension:
   - for dev build: run the follow command and it create extension files in `build` folder
   ```
   npm run build
@@ -31,4 +32,4 @@ npm install
   ```
   npm run release
   ```
-- to test the extension, follow [Temporary installation in Firefox](https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/)
+4. to test the extension, follow [Temporary installation in Firefox](https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/)
