@@ -17,7 +17,7 @@ module.exports = {
   devtool: "inline-source-map",
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+      'vue$': 'vue/dist/vue.esm.js'
     }
   },
   entry: {
@@ -34,13 +34,12 @@ module.exports = {
         test: /\.css$/,
         use: [
           "vue-style-loader",
-          //"style-loader",
           "css-loader"
         ]
       },
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use: "file-loader?name=icons/[name].[ext]",
+        use: "file-loader?name=[name].[ext]",
         exclude: /node_modules/
       },
       {

@@ -22,7 +22,7 @@
 
 <script>
 import TabSnapshot from './TabSnapshot.vue'
-import tabAction from '../../common/tabAction'
+import tabAction from '../tabAction.js'
 
 export default {
   components: {
@@ -112,5 +112,6 @@ function getIndexInTabGroup(tabs, sessionId) {
 }
 .tab-group {
   padding-bottom: 10px;
+  background: #f7f8f9;
 }
 </style>

@@ -1,13 +1,11 @@
-import browserClient from "../clients/browserClient.js";
-
 async function createSetAsideTabsPage() {
   let opened = await getOpenedSetAsideTabsPage();
   if (!!opened) {
-    await browserClient.tabs.update(opened.id, {
+    await browser.tabs.update(opened.id, {
       active: true
     });
   } else {
-    await browserClient.tabs.create({
+    await browser.tabs.create({
       active: true,
       pinned: true,
       index: 0,
@@ -17,9 +15,9 @@ async function createSetAsideTabsPage() {
 }
 
 async function getOpenedSetAsideTabsPage() {
-  let extension = await browserClient.management.get(browserClient.runtime.id);
+  let extension = await browser.management.get(browser.runtime.id);
   let urls = extension.hostPermissions.filter(url => url.match("moz-extension://"));
-  let tabs = await browserClient.tabs.query({
+  let tabs = await browser.tabs.query({
     currentWindow: true,
     url: urls[0]
   });

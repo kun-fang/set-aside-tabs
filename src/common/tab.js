@@ -1,5 +1,3 @@
-import browserClient from '../clients/browserClient.js';
-
 export default class Tab {
   constructor(tab) {
     this.id = tab.id;
@@ -12,7 +10,7 @@ export default class Tab {
   }
 
   async createSnapshot() {
-    this.snapshot = await browserClient.tabs.captureTab(this.id, {
+    this.snapshot = await browser.tabs.captureTab(this.id, {
       format: "jpeg",
       quality: 10
     });
@@ -24,7 +22,7 @@ export default class Tab {
 
   async restore() {
     if (this.sessionId !== null) {
-      await browserClient.sessions.restore(this.sessionId).then(() => {}, error => {
+      await browser.sessions.restore(this.sessionId).then(() => {}, error => {
         console.log("session cannot be restored for tab", this.toJson())
         return this.openTab();
       })
@@ -34,7 +32,7 @@ export default class Tab {
   }
 
   openTab() {
-    return browserClient.tabs.create({
+    return browser.tabs.create({
       active: true,
       index: this.index,
       url: this.url

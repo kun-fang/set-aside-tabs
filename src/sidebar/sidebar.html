@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Side Aside Tabs</title>
-    <link rel="shortcut icon" href="icons/windows-icon-48.png" type="image/x-icon">
+    <link rel="shortcut icon" href="windows-icon-48.png" type="image/x-icon">
     <style>
       .inline-icon {
         vertical-align: middle;
@@ -24,7 +24,7 @@
       <header class="navbar">
         <section class="navbar-section">
           <button class="btn btn-lg btn-default" @click="setAsideTabGroup">
-            <img src="icons/set-aside-icon-48.png" class="inline-icon">
+            <img src="set-aside-icon-48.png" class="inline-icon">
             Set Aside Tabs
           </button>
         </section>
@@ -36,7 +36,13 @@
         </section>
       </header>
       <br>
-      <p class="text-center" v-if="setAsideTabs.length === 0">Click <em>Set Aside Tabs</em> to collect all the tabs here</p>
+      <div class="empty" v-if="setAsideTabs.length === 0">
+        <div class="empty-icon">
+          <img src="set-aside-icon-96.png" alt="">
+        </div>
+        <p class="empty-title h5">No tabs are set aside</p>
+        <p class="empty-subtitle">Try it by clicking <em>Set Aside Tabs</em> button</p>
+      </div>
       <set-aside-tabs :tab-groups="setAsideTabs" @refresh-tabs="initTabs"></set-aside-tabs>
     </div>
   </body>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import SetAsideTabs from './components/SetAsideTabs.vue'
-import tabAction from '../common/tabAction.js'
+import tabAction from './tabAction.js'
 
 import '../icons/set-aside-icon-48.png'
 import '../icons/set-aside-icon-96.png'

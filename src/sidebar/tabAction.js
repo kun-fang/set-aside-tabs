@@ -1,10 +1,9 @@
-import browserClient from '../clients/browserClient.js'
-import setAsideTabStorage from './storage.js'
-import Tab from './tab.js'
+import setAsideTabStorage from '../common/storage.js'
+import Tab from '../common/tab.js'
 
 export default {
   async getAllTabs () {
-    let tabs = await browserClient.tabs.query({
+    let tabs = await browser.tabs.query({
       currentWindow: true,
       windowType: "normal",
       hidden: false,
@@ -15,7 +14,7 @@ export default {
   },
 
   async getHighlightedTabs () {
-    let tabs = await browserClient.tabs.query({
+    let tabs = await browser.tabs.query({
       currentWindow: true,
       windowType: "normal",
       highlighted: true,
@@ -31,15 +30,15 @@ export default {
   },
 
   async getRecentSessions (count) {
-    let window = await browserClient.windows.getCurrent();
-    let sessions = await browserClient.sessions.getRecentlyClosed({});
+    let window = await browser.windows.getCurrent();
+    let sessions = await browser.sessions.getRecentlyClosed({});
     return sessions.filter(
       session => session.tab
       && session.tab.windowId === window.id).slice(0, count);
   },
 
   async closeTabs (tabs) {
-    await Promise.all(tabs.map(tab => browserClient.tabs.remove(tab.id)));
+    await Promise.all(tabs.map(tab => browser.tabs.remove(tab.id)));
     let sessions = await this.getRecentSessions(tabs.length);
     tabs
       .filter((_, index) => index < sessions.length)

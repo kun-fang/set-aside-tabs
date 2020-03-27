@@ -1,9 +1,9 @@
-import browserClient from "../clients/browserClient.js"
+import storageClient from "../clients/storageClient.js"
 
 let storageKey = "side-aside-key";
 
 async function getSetAsideTabs() {
-  let results = await browserClient.storage.get(storageKey);
+  let results = await storageClient.get(storageKey);
   return results || [];
 }
 
@@ -13,7 +13,7 @@ async function addTabGroup(tabGroup) {
     createdAt: new Date().getTime(),
     tabs: tabGroup
   });
-  let result = await browserClient.storage.set(storageKey, setAsideTabs);
+  let result = await storageClient.set(storageKey, setAsideTabs);
 }
 
 async function removeTabInTabGroup(tabGroupCreateTime, indexInGroup) {
@@ -24,17 +24,17 @@ async function removeTabInTabGroup(tabGroupCreateTime, indexInGroup) {
   } else {
     tabGroup.tabs.splice(indexInGroup, 1);
   }
-  await browserClient.storage.set(storageKey, setAsideTabs);
+  await storageClient.set(storageKey, setAsideTabs);
 }
 
 async function removeTabGroup(tabGroupCreateTime) {
   let setAsideTabs = await getSetAsideTabs();
   setAsideTabs = setAsideTabs.filter(group => group.createdAt !== tabGroupCreateTime);
-  return await browserClient.storage.set(storageKey, setAsideTabs);
+  return await storageClient.set(storageKey, setAsideTabs);
 }
 
 async function removeAll() {
-  return await browserClient.storage.remove(storageKey);
+  return await storageClient.remove(storageKey);
 }
 
 let setAsideTabStorage = {
