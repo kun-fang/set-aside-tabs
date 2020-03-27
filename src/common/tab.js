@@ -12,7 +12,7 @@ export default class Tab {
   async createSnapshot() {
     this.snapshot = await browser.tabs.captureTab(this.id, {
       format: "jpeg",
-      quality: 10
+      quality: 1
     });
   }
 

@@ -5,10 +5,9 @@ const baseConfig = require('./webpack.config.base.js');
 const path = require("path");
 
 module.exports = merge(baseConfig, {
-  mode: 'development',
-  devtool: "inline-source-map",
+  mode: 'production',
   output: {
-    path: path.join(__dirname, "dist"),
+    path: path.join(__dirname, "release"),
     filename: "[name].js"
   }
 });

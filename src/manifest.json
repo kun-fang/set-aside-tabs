@@ -24,7 +24,7 @@
     "default_title": "Set Aside Tabs"
   },
 
-  "permissions": ["sessions", "tabs", "storage", "management"],
+  "permissions": ["<all_urls>", "sessions", "tabs", "storage", "management"],
 
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'; img-src 'self' data:"
 
