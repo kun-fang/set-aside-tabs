@@ -38,11 +38,32 @@ export default {
   },
 
   async closeTabs (tabs) {
+    let tabMap = tabs.reduce((map, tab) => {
+      let key = tab.title + tab.url;
+      if (map[key]) {
+        map[key].push(tab);
+      } else {
+        map[key] = [tab];
+      }
+      return map;
+    }, {});
     await Promise.all(tabs.map(tab => browser.tabs.remove(tab.id)));
     let sessions = await this.getRecentSessions(tabs.length);
-    tabs
-      .filter((_, index) => index < sessions.length)
-      .map((tab, index) => tab.setSessionId(sessions[index]));
+    let sessionMap = sessions.reduce((map, session) => {
+      let key = session.tab.title + session.tab.url;
+      if (map[key]) {
+        map[key].push(session);
+      } else {
+        map[key] = [session];
+      }
+      return map;
+    }, {});
+    Object.entries(tabMap).map(entry => {
+      let [key, tabValues] = entry;
+      let sessionValues = sessionMap[key] || [];
+      tabValues.filter((_, index) => index < sessionValues.length)
+        .map((tab, index) => tab.setSessionId(sessionValues[index]));
+    });
   },
 
   async saveTabs (tabs) {

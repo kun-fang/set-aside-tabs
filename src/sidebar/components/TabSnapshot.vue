@@ -11,6 +11,11 @@
 </template>
 
 <script>
+function getRandomSessionId() {
+  let intId = -Math.floor(Math.random() * 100000);
+  return intId.toString();
+}
+
 export default {
   props: {
     url: {
@@ -19,7 +24,7 @@ export default {
     },
     sessionId: {
       type: String,
-      required: true
+      default: getRandomSessionId()
     },
     snapshot: {
       type: String,
