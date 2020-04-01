@@ -1,16 +1,16 @@
 {
   "name": "side-aside-tabs",
   "version": "1.0.2",
-  "description": "",
-  "main": "index.js",
+  "description": "A firefox addon that allows to set aside tabs and restore them later.",
   "scripts": {
     "build": "webpack --env=dev",
     "release": "webpack --env=prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["firefox", "firefox-addon", "firefox-extension", "set-aside-tabs"],
+  "author": "kufangkuang",
+  "license": "MIT",
+  "homepage": "https://github.com/kun-fang/set-aside-tabs",
   "dependencies": {
     "npm": "^6.14.3",
     "spectre.css": "^0.5.8",
@@ -20,6 +20,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.2",
+    "eslint": "^6.8.0",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^3.2.0",
     "style-loader": "^1.1.3",

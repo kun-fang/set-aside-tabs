@@ -5,6 +5,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 const path = require("path");
+
+const { generateMenifest } = require("./firefox.extension.build.js");
+const packageConfig = require("./package.json");
+
 const srcPath = path.join(__dirname, "src");
 
 module.exports = {
@@ -46,8 +50,12 @@ module.exports = {
       filename: "sidebar.html",
     }),
     new CopyWebpackPlugin([{
-      from: "./manifest.json",
-      to: "./manifest.json"
+      from: "./config.json",
+      to: "./manifest.json",
+      transform: (content, path) => {
+        let config = generateMenifest(JSON.parse(content), packageConfig);
+        return Buffer.from(JSON.stringify(config, null, 2));
+      }
     }]),
   ]
 }
