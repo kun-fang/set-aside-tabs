@@ -59,7 +59,7 @@ export default {
       }
       diff = Math.floor(diff / 24);
       if (diff / 30 < 1) {
-        return `#{diff} days ago`
+        return `${diff} days ago`
       }
       let createDate = new Date(this.createdAt);
       return createDate.toLocaleDateString();
