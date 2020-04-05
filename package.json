@@ -13,7 +13,7 @@
     "firefox-extension",
     "set-aside-tabs"
   ],
-  "author": "kufangkuang",
+  "author": "kuangkuang",
   "license": "MIT",
   "homepage": "https://github.com/kun-fang/set-aside-tabs",
   "dependencies": {
