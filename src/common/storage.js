@@ -1,6 +1,5 @@
 import storageClient from "../clients/storageClient.js"
-
-let storageKey = "side-aside-key";
+import { storageKey } from "./constant.js"
 
 async function getSetAsideTabs() {
   let results = await storageClient.get(storageKey);

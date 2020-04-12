@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import SetAsideTabs from './components/SetAsideTabs.vue'
 import tabAction from './tabAction.js'
+import { setAsideTabsCommandName } from '../common/constant.js'
 
 import '../icons/set-aside-icon-48.png'
 import '../icons/set-aside-icon-96.png'
@@ -14,10 +15,19 @@ new Vue({
     "set-aside-tabs": SetAsideTabs
   },
   data: {
-    setAsideTabs: []
+    setAsideTabs: [],
+    setAsideTabsCommand: null,
   },
   async mounted() {
-    this.initTabs();
+    await this.initTabs();
+    await this.getCommand();
+  },
+  computed: {
+    commandTip: function () {
+      return !this.setAsideTabsCommand
+        ? ""
+        : `${this.setAsideTabsCommand.description}\nShortcut: ${this.setAsideTabsCommand.shortcut}`
+    }
   },
   methods: {
     async setAsideTabGroup() {
@@ -35,6 +45,14 @@ new Vue({
 
     async initTabs() {
       this.setAsideTabs = await tabAction.getSetAsideTabs(false);
+    },
+
+    async getCommand() {
+      let allCmds = await browser.commands.getAll();
+      let filteredCmd = allCmds.filter(cmd => cmd.name === setAsideTabsCommandName);
+      if (filteredCmd.length > 0) {
+        this.setAsideTabsCommand = filteredCmd[0];
+      }
     }
   }
 })

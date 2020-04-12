@@ -13,6 +13,15 @@
     "default_icon": "set-aside-icon-48.png",
     "default_title": "Set Aside Tabs"
   },
+  "commands": {
+    "set-aside-open-tabs": {
+      "suggested_key": {
+        "default": "Alt+Shift+U",
+        "linux": "Ctrl+Shift+U"
+      },
+      "description": "Set aside all the open tabs"
+    }
+  },
   "permissions": [
     "<all_urls>",
     "sessions",

@@ -1,6 +1,10 @@
+import tabAction from '../sidebar/tabAction.js'
+import { setAsideTabsCommandName } from '../common/constant.js'
+
 async function createSetAsideTabsPage() {
   let opened = await getOpenedSetAsideTabsPage();
   if (!!opened) {
+    await browser.tabs.reload(opened.id);
     await browser.tabs.update(opened.id, {
       active: true
     });
@@ -25,3 +29,9 @@ async function getOpenedSetAsideTabsPage() {
 }
 
 browser.browserAction.onClicked.addListener(createSetAsideTabsPage);
+browser.commands.onCommand.addListener(async (cmd) => {
+  if (cmd === setAsideTabsCommandName) {
+    await tabAction.setAsideTabs(false);
+    await createSetAsideTabsPage();
+  }
+})

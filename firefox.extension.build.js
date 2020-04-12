@@ -30,6 +30,7 @@ const manifestMappingConfig = [
   "background",
   "content",
   "browser_action",
+  "commands",
   "permissions",
   {
     "key": "content_security_policy",

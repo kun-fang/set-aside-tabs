@@ -23,7 +23,9 @@
     <div id="sidebar">
       <header class="navbar">
         <section class="navbar-section">
-          <button class="btn btn-lg btn-default" @click="setAsideTabGroup">
+          <button class="btn btn-lg btn-default tooltip tooltip-right"
+            :data-tooltip="commandTip"
+            @click="setAsideTabGroup">
             <img src="set-aside-icon-48.png" class="inline-icon">
             Set Aside Tabs
           </button>
