@@ -13,7 +13,7 @@ async function createSetAsideTabsPage() {
       active: true,
       pinned: true,
       index: 0,
-      url: "/sidebar.html"
+      url: "/setAsideTabs.html"
     })
   }
 }

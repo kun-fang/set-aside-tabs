@@ -13,13 +13,8 @@ const srcPath = path.join(__dirname, "src");
 
 module.exports = {
   context: srcPath,
-  resolve: {
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    }
-  },
   entry: {
-    sidebar: './sidebar/sidebar.js',
+    setAsideTabs: './sidebar/setAsideTabs.js',
     background: './background/background.js'
   },
   module: {
@@ -46,8 +41,8 @@ module.exports = {
     new CleanWebpackPlugin({}),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      template: "sidebar/sidebar.html",
-      filename: "sidebar.html",
+      template: "sidebar/setAsideTabs.html",
+      filename: "setAsideTabs.html",
     }),
     new CopyWebpackPlugin([{
       from: "./config.json",
