@@ -8,6 +8,11 @@
           <img src="set-aside-icon-48.png" class="inline-icon">
           Set Aside Tabs
         </button>
+        <button class="btn btn-lg btn-default" style="margin-left: 10px"
+          v-show="this.hasHighlightedTabs"
+          @click="setAsideHighlightedTabs">
+          Set Aside Highlighted Tabs
+        </button>
       </section>
       <section class="navbar-center">
         <div class="navbar-brand text-bold">Tabs You Have Set Aside</div>
@@ -39,7 +44,8 @@ export default {
   data: function () {
     return {
       setAsideTabs: [],
-      setAsideTabsCommand: null
+      setAsideTabsCommand: null,
+      hasHighlightedTabs: false
     };
   },
   props: {
@@ -58,6 +64,10 @@ export default {
   mounted: async function() {
     await this.initTabs();
     await this.getCommand();
+    browser.tabs.onHighlighted.addListener(async () => {
+      let highlightedTabs = await tabAction.getHighlightedTabs();
+      this.hasHighlightedTabs = (highlightedTabs.length > 0);
+    })
   },
   methods: {
     async setAsideTabGroup() {
@@ -65,6 +75,15 @@ export default {
       if (tabGroup.length > 0) {
         let tabs = await tabAction.getSetAsideTabs();
         this.setAsideTabs = tabs;
+      }
+    },
+
+    async setAsideHighlightedTabs() {
+      let tabGroup = await tabAction.setAsideTabs(true);
+      if (tabGroup.length > 0) {
+        let tabs = await tabAction.getSetAsideTabs();
+        this.setAsideTabs = tabs;
+        this.hasHighlightedTabs = false;
       }
     },
 
@@ -94,6 +113,6 @@ export default {
     border-radius: 0.3rem !important;
   }
   .btn.btn-lg {
-    height: 2.5rem !important;
+    height: 2.0rem !important;
   }
 </style>

@@ -6,7 +6,7 @@ import '../icons/set-aside-icon-48.png'
 import '../icons/set-aside-icon-96.png'
 import '../icons/windows-icon-48.png'
 
-import "spectre.css/dist/spectre.css"
+import "spectre.css/dist/spectre.min.css"
 
 new Vue({
   el: '#app',

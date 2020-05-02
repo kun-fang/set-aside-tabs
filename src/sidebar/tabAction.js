@@ -9,7 +9,9 @@ export default {
       hidden: false,
       pinned: false
     })
-    return tabs.filter(tab => !tab.url.match("^about"))
+    return tabs.filter(
+        tab => !tab.url.match("^about")
+        && !tab.url.match("^moz-extension"))
       .map(tab => new Tab(tab));
   },
 
@@ -21,9 +23,11 @@ export default {
       hidden: false,
       pinned: false
     })
-    return tabs.filter(tab => !tab.url.match("^about"))
-      .map(tab => new Tab(tab));
-  },
+    return tabs.filter(
+      tab => !tab.url.match("^about")
+      && !tab.url.match("^moz-extension"))
+    .map(tab => new Tab(tab));
+},
 
   async snapshotTabs (tabs) {
     await Promise.all(tabs.map(tab => tab.createSnapshot()));
