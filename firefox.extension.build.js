@@ -5,10 +5,11 @@ const manifestMappingConfig = [
     "key": "browser_specific_settings",
     "value": (config, package) => {
       let id = config.id || `${package.name.replace(/\s+/g, '-')}@${package.author.replace(/\s+/g, '-')}`;
+      let minVer = config.minVersion || minVersion;
       return {
         "gecko": {
           id: id,
-          strict_min_version: minVersion
+          strict_min_version: minVer
         }
       };
     }

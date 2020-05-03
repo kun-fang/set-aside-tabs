@@ -4,8 +4,9 @@
   "description": "A firefox addon that allows to set aside tabs and restore them later.",
   "scripts": {
     "build": "webpack --env=dev",
-    "release": "webpack --env=prod",
+    "release": "webpack --env=prod && web-ext build -s release -a artifacts -o",
     "debug": "web-ext run -s build",
+    "lint": "web-ext lint -s release",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

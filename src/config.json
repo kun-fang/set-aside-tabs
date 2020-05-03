@@ -1,5 +1,6 @@
 {
   "name": "Set Aside Tabs",
+  "minVersion": "59.0",
   "icons": {
     "48": "set-aside-icon-48.png",
     "96": "set-aside-icon-96.png"
@@ -30,7 +31,7 @@
     "management"
   ],
   "csp": [
-    "script-src 'self' 'unsafe-eval'",
+    "script-src 'self'",
     "object-src 'self'",
     "img-src 'self' data:"
   ]

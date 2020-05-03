@@ -12,6 +12,7 @@
 /build
 /dist
 /release
+/artifacts
 
 # misc
 .DS_Store
