@@ -26,6 +26,13 @@ async function removeTabInTabGroup(tabGroupCreateTime, indexInGroup) {
   await storageClient.set(storageKey, setAsideTabs);
 }
 
+async function updateTabGroupName(tabGroupCreateTime, name) {
+  let setAsideTabs = await getSetAsideTabs();
+  let tabGroup = setAsideTabs.filter(group => group.createdAt === tabGroupCreateTime)[0];
+  tabGroup.name = name;
+  await storageClient.set(storageKey, setAsideTabs);
+}
+
 async function removeTabGroup(tabGroupCreateTime) {
   let setAsideTabs = await getSetAsideTabs();
   setAsideTabs = setAsideTabs.filter(group => group.createdAt !== tabGroupCreateTime);
@@ -41,7 +48,8 @@ let setAsideTabStorage = {
   add: addTabGroup,
   removeTabGroup: removeTabGroup,
   removeAll: removeAll,
-  removeTabInTabGroup: removeTabInTabGroup
+  removeTabInTabGroup: removeTabInTabGroup,
+  updateTabGroupName: updateTabGroupName
 };
 
 export default setAsideTabStorage;

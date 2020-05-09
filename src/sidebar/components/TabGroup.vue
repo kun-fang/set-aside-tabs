@@ -1,10 +1,14 @@
 <template>
   <div class="panel tab-group">
     <div class="panel-header">
-      <button class="btn btn-link float-right" @click="removeGroup">&times;</button>
-      <!-- <button class="btn btn-link float-right">Bookmark These Pages</button> -->
-      <a class="btn btn-link float-right" @click="restoreAll">Restore tabs</a>
-      {{ size }} tabs <span class="text-gray">{{ createTimeDisplay }}</span>
+      <div class="form-group">
+        <button class="btn btn-link float-right" @click="removeGroup">&times;</button>
+        <!-- <button class="btn btn-link float-right">Bookmark These Pages</button> -->
+        <a class="btn btn-link float-right" @click="restoreAll">Restore tabs</a>
+        <label class="form-label form-inline" v-show="nameEditing">Name: </label>
+        <input ref="nameInput" v-show="nameEditing" class="form-inline" type="text" placeholder="Name" :value="name" @blur="onEditingName($event)">
+        <label v-show="!nameEditing" @click="nameEditing=true"><span class="text-success">{{ name }}</span> {{ size }} tabs <span class="text-gray">{{ createTimeDisplay }}</span></label>
+      </div>
     </div>
     <div class="panel-body">
       <div class="tab-card">
@@ -29,6 +33,12 @@ export default {
     'tab-snapshot': TabSnapshot
   },
 
+  data: function () {
+    return {
+      nameEditing: false
+    };
+  },
+
   props: {
     tabs: {
       type: Array,
@@ -37,6 +47,10 @@ export default {
     createdAt: {
       type: Number,
       required: true
+    },
+    name: {
+      type: String,
+      required: false
     }
   },
 
@@ -84,6 +98,12 @@ export default {
       }
       await tabAction.removeRestoredTab(this.createdAt, tabIndex);
       this.$emit("refresh-tabs");
+    },
+
+    onEditingName: async function (event) {
+      await tabAction.updateTabGroupName(this.createdAt, event.target.value);
+      this.$emit("refresh-tabs");
+      this.nameEditing = false;
     },
 
     restoreAll: async function () {

@@ -92,12 +92,17 @@ export default {
     let data = await setAsideTabStorage.get();
     return data.map(tabGroup => ({
       "createdAt": tabGroup.createdAt,
+      "name": tabGroup.name,
       "tabs": tabGroup.tabs.map(tab => new Tab(tab))
     }));
   },
 
   async removeRestoredTab (tabGroupCreateTime, index) {
     await setAsideTabStorage.removeTabInTabGroup(tabGroupCreateTime, index);
+  },
+
+  async updateTabGroupName (tabGroupCreateTime, name) {
+    await setAsideTabStorage.updateTabGroupName(tabGroupCreateTime, name);
   },
 
   async clearTabGroup(tabGroupCreateTime) {
