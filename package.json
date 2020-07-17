@@ -19,7 +19,7 @@
   "license": "MIT",
   "homepage": "https://github.com/kun-fang/set-aside-tabs",
   "dependencies": {
-    "npm": "^6.14.3",
+    "npm": "^6.14.6",
     "spectre.css": "^0.5.8",
     "vue": "^2.6.11"
   },
