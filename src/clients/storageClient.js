@@ -5,19 +5,19 @@ export default {
       browser.storage.sync.get(key)
     ]);
     // migrate from local storage to sync storage
-    if (!!localResult[key] && !syncResult[key]) {
+    if (!!syncResult[key] && !localResult[key]) {
       await this.set(key, localResult[key]);
-      await browser.storage.local.remove(key);
-      syncResult = localResult;
+      await browser.storage.sync.remove(key);
+      localResult = syncResult;
     }
-    return syncResult[key];
+    return localResult[key];
   },
   set: async function (key, value) {
     let result = {};
     result[key] = value;
-    return await browser.storage.sync.set(result);
+    return await browser.storage.local.set(result);
   },
   remove: async function (key) {
-    return await browser.storage.sync.remove(key);
+    return await browser.storage.local.remove(key);
   }
 };
